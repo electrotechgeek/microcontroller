@@ -1,4 +1,6 @@
 # Xcode
+*.o
+*.elf
 .DS_STORE
 build/*
 *.pbxuser

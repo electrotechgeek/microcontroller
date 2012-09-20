@@ -1,0 +1,4 @@
+1. The LED is connected to pin 19 on the arduino. It also is connected the port 13 on the uno board's headers.
+2. YES.
+3. PB4 is also the MISO pin. It recieves data from other SPI devices. 
+4.
