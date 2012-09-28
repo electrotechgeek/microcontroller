@@ -11,17 +11,13 @@ void lcd_write(unsigned char data)
 	PORTD |= (1<<4);
 	//Write data to bus
 	
-	PORTB &= 0xE0;
-	PORTB |= (data & (1<<0)) << 4;
-	PORTB |= (data & (1<<1)) << 3;
-	PORTB |= (data & (1<<2)) << 2;
-	PORTB |= (data & (1<<3)) << 1;
-	PORTB |= (data & (1<<4)) << 0;
-
-	PORTD &= 0x03;
-	PORTD |= (data & (1<<5)) << 7;
-	PORTD |= (data & (1<<6)) << 6;
-	PORTD |= (data & (1<<7)) << 5;
+	unsigned char pb = PORTB & 0xE0;
+	pb |= data >> 3;
+	PORTB = pb;
+	
+	unsigned char pd = PORTD & 0x1F;
+	pd |= (data & 0x07) << 5;
+	PORTD = pd;
 
 	_delay_us(10);
 	//Set E low
@@ -36,22 +32,29 @@ void lcd_cmd(unsigned char cmd)
 	_delay_ms(15);
 }
 
+void lcd_lowerLine()
+{
+	lcd_cmd(0xC0);
+}
+
+void lcd_upperLine()
+{
+	lcd_cmd(0x80);
+}
+
 void lcd_on()
 {
-	lcd_cmd(0x0C);
-	_delay_ms(15);
+	lcd_cmd(0x0F);
 }
 
 void lcd_off()
 {
 	lcd_cmd(0x08);
-	_delay_ms(15);
 }
 
 void lcd_clear()
 {
 	lcd_cmd(0x01);
-	_delay_ms(15);
 }
 
 void lcd_printChar(char character)
@@ -72,23 +75,28 @@ void lcd_printString(char *string)
 
 void lcd_init()
 {	
+	_delay_ms(50);
 	DDRD |= 0xFC; 
 	DDRB |= 0x1F;
 	//Enable low 
 	PORTD &= ~(1<<4);
-	PORTD &= ~(1<<3);
-	_delay_ms(15);
-	lcd_cmd(0x38);
-	_delay_ms(15);
-	lcd_cmd(0x38);
-	_delay_us(1);
 
-	lcd_off();
-	_delay_ms(15);
-	lcd_clear();
-	_delay_ms(15);
-	lcd_cmd(0x06);
-	_delay_ms(15);
+	lcd_cmd(0x3C);
+	
 	lcd_on();
+
+	lcd_clear();
+
+	// Set entry mode
+	lcd_cmd(0x06);
+
+
+	// lcd_off();
+	// _delay_ms(15);
+	// lcd_clear();
+	// _delay_ms(15);
+	// lcd_cmd(0x06);
+	// _delay_ms(15);
+	// lcd_on();
 	
 }
