@@ -18,14 +18,14 @@ int main()
     // infinite loop
     while(1) {
         // Write PB0 high
-        PORTB |= (1<<PB5);
+        // PORTB |= (1<<PB5);
         // 250 us
-        _delay_ms(250);
+        // _delay_ms(250);
         // Turn PB0 OFF
-        PORTB &= ~(1<<PB5);
-        lcd_printChar('a');
+        // PORTB &= ~(1<<PB5);
+        // lcd_printChar('a');
         // wait for the rest of the second
-        _delay_ms(750);
+        // _delay_ms(750);
     }
 
 	return 0;
