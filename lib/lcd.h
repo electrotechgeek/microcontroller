@@ -2,8 +2,6 @@
 // Jason Descenzo
 // Project 1 (Library)
 
-#define RS 
-
 void lcd_printChar(char character);
 void lcd_printString(char *string);
 void lcd_clear();

@@ -5,7 +5,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-void lcd_write(unsigned char data)
+void lcd_write(u08 data)
 {
 	//Set E high
 	PORTD |= (1<<4);
@@ -24,7 +24,7 @@ void lcd_write(unsigned char data)
 	PORTD &= ~(1<<4);
 }
 
-void lcd_cmd(unsigned char cmd)
+void lcd_cmd(u08 cmd)
 {	
 	// Set RS low 
 	PORTD &= ~(1<<2);
@@ -89,14 +89,5 @@ void lcd_init()
 
 	// Set entry mode
 	lcd_cmd(0x06);
-
-
-	// lcd_off();
-	// _delay_ms(15);
-	// lcd_clear();
-	// _delay_ms(15);
-	// lcd_cmd(0x06);
-	// _delay_ms(15);
-	// lcd_on();
 	
 }
