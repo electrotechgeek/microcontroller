@@ -1,9 +1,7 @@
+// Arduino library
 // Jason Dreisbach
 // Jason Descenzo
-// Project 1 (Library)
-
-#include <avr/io.h>
-#include <util/delay.h>
+#include <arduino.h>
 
 void lcd_write(u08 data)
 {

@@ -1,7 +1,6 @@
+// Project 1 (Hello World)
 // Jason Dreisbach
 // Jason Descenzo
-// Project 1 (Hello World)
-
 
 #include <arduino.h>
 

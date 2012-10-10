@@ -2,8 +2,8 @@
 # Jason Dreisbach
 # Jason Descenzo
 
-TARGET = hello
-LIB = ../lib
+TARGET = timersandinterrupts
+LIB = ../../lib
 
 SRC =  main.c\
 

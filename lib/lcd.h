@@ -1,6 +1,6 @@
+// Arduino Library
 // Jason Dreisbach
 // Jason Descenzo
-// Project 1 (Library)
 
 void lcd_printChar(char character);
 void lcd_printString(char *string);

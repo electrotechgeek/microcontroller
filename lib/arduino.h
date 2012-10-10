@@ -1,6 +1,7 @@
+// Arduino Library
 // Jason Dreisbach
 // Jason Descenzo
-// Arduino Library
+
 
 #ifndef ARDUINO_H
 #define ARDUINO_H
@@ -22,6 +23,9 @@ typedef signed long   s32; //!< Signed 32-bit integer, range: -2,147,483,648 to 
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
+
+// Library headers
 #include <lcd.h>
 
 #endif /* ARDUINO_H */

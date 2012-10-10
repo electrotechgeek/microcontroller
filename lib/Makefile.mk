@@ -1,3 +1,7 @@
+# Arduino library makefile
+# Jason Dreisbach
+# Jason Descenzo
+
 SRC += $(LIB)/lcd.c
 
 # device info
