@@ -24,6 +24,7 @@ int waveForms[WaveTypeCount][SampleCount] = {
 	{2048, 2368, 2680, 2978, 3251, 3496, 3704, 3872, 3995, 4070, 4095, 4070, 3995, 3872, 3704, 3496, 3251, 2977, 2680, 2368, 2048, 1727, 1415, 1118, 844, 600, 391, 223, 100, 25, 0, 25, 100, 223, 391, 600, 844, 1118, 1415, 1727},
 	{0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900}
 };
+
 typedef enum {
 	square_wave  = 0,
 	sine_wave    = 1,
@@ -96,13 +97,15 @@ void setTimer(Freqency freq)
 	}
 }
 
+double scale = 1.0;
+int offset = 0;
 char idx = 0;
 ISR(TIMER0_COMPA_vect)
 {
 	if (idx >= SampleCount) {
 		idx = 0;
 	}
-	Transmit_SPI_Master(waveForms[currentWaveformType][idx++]);
+	Transmit_SPI_Master(waveForms[currentWaveformType][idx++] * scale + offset);
 }
 
 
@@ -166,8 +169,13 @@ void main()
 					waveForms[square_wave][i+3] = 0x000;
 				}
 			}
-
-			
+			else {
+				scale = 0.5;
+				offset += 128;
+				if (offset > 2048){
+					offset = 0;
+				}
+			}
 		}
 
 		_delay_ms(500);		
