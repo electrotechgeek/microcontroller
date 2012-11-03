@@ -10,10 +10,13 @@
 #import "SnakeState.h"
 
 @class Snake;
+@class SerialConnect;
 @interface SnakeView: NSView <SnakeState>
 {
     Snake *snake;
     NSTimer *timer;
+    SerialConnect *serialConnection;
+    NSMutableString *packet;
 }
 
 @property (nonatomic,retain) Snake *snake;

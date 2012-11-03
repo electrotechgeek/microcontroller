@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33DED894164440340030698A /* SerialConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DED893164440340030698A /* SerialConnect.m */; };
 		8304FC6E1519A92F008B2334 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304FC6D1519A92E008B2334 /* Food.m */; };
 		83B9EBB91518288B00718F02 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B9EBB81518288B00718F02 /* Cocoa.framework */; };
 		83B9EBC31518288B00718F02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83B9EBC11518288B00718F02 /* InfoPlist.strings */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33DED892164440340030698A /* SerialConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialConnect.h; sourceTree = "<group>"; };
+		33DED893164440340030698A /* SerialConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialConnect.m; sourceTree = "<group>"; };
 		8304FC6C1519A92E008B2334 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
 		8304FC6D1519A92E008B2334 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
 		8304FC6F1519A9A1008B2334 /* SnakeState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeState.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 			children = (
 				83B9EBCA1518288B00718F02 /* AppDelegate.h */,
 				83B9EBCB1518288B00718F02 /* AppDelegate.m */,
+				33DED892164440340030698A /* SerialConnect.h */,
+				33DED893164440340030698A /* SerialConnect.m */,
 				83B9EBD51518337700718F02 /* SnakeView.h */,
 				83B9EBD61518337700718F02 /* SnakeView.m */,
 				8304FC6F1519A9A1008B2334 /* SnakeState.h */,
@@ -191,6 +196,7 @@
 				83B9EBD71518337700718F02 /* SnakeView.m in Sources */,
 				83B9EBDE1518729A00718F02 /* Snake.m in Sources */,
 				8304FC6E1519A92F008B2334 /* Food.m in Sources */,
+				33DED894164440340030698A /* SerialConnect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
