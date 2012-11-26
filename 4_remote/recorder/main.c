@@ -1,5 +1,6 @@
 #include <stdlib.h>					// Standard C library
 #include <avr/io.h>					// Input-output ports, special registers
+#include <avr/interrupt.h>
 #include <util/delay.h>
 #include <stdio.h>
 #include <string.h>
@@ -16,62 +17,82 @@ void printLine(char *string);
 
 void outputPulses(uint16_t pulses[100][2], uint8_t pulseCount);
 
-#define RESOLUTION 20 // us
-#define MAXPULSE 65000 // ms
+void initPCINT_PD2(void);
+void initCounter(void);
+
+uint16_t pulses[100][2];
+uint8_t currentpulse = 0;
 
 int main (void)
 {
 	DDRD &= ~_BV(PD2);
 
-	uint16_t pulses[100][2];
-	uint8_t currentpulse = 0;
-	uint8_t didTimeout;
-	uint16_t highpulse = 0, lowpulse = 0;
 	usart_init(9600, 16000000);
 
+	initCounter();
+	initPCINT_PD2();
 
-	for (;;) {
-		didTimeout = 0;
-		highpulse = 0;
-		lowpulse = 0;
+	sei();
 
-		while (PIND & _BV(PD2)) {
-			highpulse++;
-			_delay_us(RESOLUTION);
 
-			if ((highpulse >= MAXPULSE) && (currentpulse != 0)) {
-				outputPulses(pulses, currentpulse);
-				currentpulse = 0;
-				didTimeout = 1;
-				break;
-			}
-		}
-		// reset
-		if (didTimeout) continue;
-
-		pulses[currentpulse][0] = highpulse;
-
-		while (! (PIND & _BV(PD2)) ) {
-			lowpulse++;
-			_delay_us(RESOLUTION);
-
-			if ((lowpulse >= MAXPULSE) && (currentpulse != 0)) {
-				outputPulses(pulses, currentpulse);
-				currentpulse = 0;
-				didTimeout = 1;
-				break;
-			}
-		}
-		if (didTimeout) continue;
-		pulses[currentpulse][1] = lowpulse;
-		
-		currentpulse++;
-	}
+	for (;;);
 
 	return 0;
 }
 
+void initCounter(void)
+{
+	// timer overflow mode
+	TCCR1A = 0x00;
+	// timer clk = system clk / 8
+	TCCR1B = _BV(WGM12) | _BV(CS11) | _BV(CS10);
+	TCCR1C = 0x00;
+	OCR1A = 62500;
+	TCNT1 = 0x000;
+	// timer overflow interrupt enabled
+	TIMSK1 = _BV(OCIE1A);
+	// clear previous timer overflow
+	TIFR1 |= _BV(OCF1A);
+}
 
+
+ISR(TIMER1_COMPA_vect)
+{
+	if (currentpulse != 0) {
+		outputPulses(pulses, currentpulse);
+	}
+	currentpulse = 0;
+}
+
+void initPCINT_PD2(void)
+{
+      PCICR  = 0x04;  	// enable PCINT23..16
+      PCMSK2 = 0x04; 	// enable PCINT18 interrupt
+      PCIFR  = 0x04;  	// clear previous interrupts
+}
+
+//     0,0     0,1       1,0       1,1
+// [highTime][lowTime][highTime][lowTime]
+ISR(PCINT2_vect)
+{
+	// Elapsed time is the pulse length
+	uint16_t pulseLength = TCNT1;
+
+	// If the detector reads a high
+	if (bit_is_clear(PIND, PD2)) {
+		pulses[currentpulse][0] = pulseLength;
+	}
+	else {
+		pulses[currentpulse][1] = pulseLength;
+		currentpulse++;
+	}
+	// Reset the counter
+	TCNT1 = 0x000;
+}
+
+//======================================================================================================
+// Serial Communication
+//======================================================================================================
 void printString(char *string)
 {
 	int i = 0;
