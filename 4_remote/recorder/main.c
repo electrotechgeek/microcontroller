@@ -44,7 +44,7 @@ void initCounter(void)
 {
 	// timer overflow mode
 	TCCR1A = 0x00;
-	// timer clk = system clk / 8
+	// timer clk = system clk / 64
 	TCCR1B = _BV(WGM12) | _BV(CS11) | _BV(CS10);
 	TCCR1C = 0x00;
 	OCR1A = 62500;
