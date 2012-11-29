@@ -19,7 +19,6 @@ struct powercode
   struct codeElement codes[];  // flexible number of on/off codes
 };
 
-
 #define pulseCount  150
 unsigned int code[] = {
 	 46805,   261,
@@ -98,84 +97,6 @@ unsigned int code[] = {
 	   288,    99,
 	    85,   105
 };
-/*{,
-	 57022,    50,
-	    18,    17,
-	    45,    18,
-	    17,    18,
-	    18,    18,
-	    30,    18,
-	    18,    18,
-	    57,    18,
-	    17,    18,
-	    18,    18,
-	    44,    17,
-	    31,    18,
-	    31,    18,
-	    31,    17,
-	    31,    18,
-	    31,    18,
-	    17,    18,
-	    18,    18,
-	    17,    18,
-	    18,    18,
-	    17,    18,
-	    31,    18,
-	    44,    18,
-	    44,    17,
-	    18,    18,
-	  4427,    49,
-	    18,    18,
-	    44,    18,
-	    18,    18,
-	    17,    18,
-	    31,    18,
-	    17,    18,
-	    57,    18,
-	    18,    18,
-	    17,    18,
-	    44,    18,
-	    31,    18,
-	    30,    18,
-	    31,    18,
-	    31,    18,
-	    31,    17,
-	    18,    18,
-	    18,    16,
-	    19,    18,
-	    18,    17,
-	    18,    18,
-	    31,    17,
-	    45,    17,
-	    44,    18,
-	    18,    18,
-	   342,    49,
-	    18,    18,
-	    44,    18,
-	    18,    18,
-	    17,    18,
-	    31,    18,
-	    18,    17,
-	    57,    18,
-	    18,    18,
-	    18,    17,
-	    44,    18,
-	    31,    18,
-	    31,    17,
-	    31,    18,
-	    31,    18,
-	    31,    17,
-	    18,    18,
-	    18,    16,
-	    19,    18,
-	    31,    18,
-	    17,    18,
-	    31,    18,
-	    44,    16,
-	    59,    18,
-	    17,    18
-};
-*/
 
 // USART Stuff
 void usart_init(uint16_t baudin, uint32_t clk_speedin);
@@ -185,8 +106,6 @@ uint8_t usart_istheredata(void);
 
 void printString(char *string);
 void printLine(char *string);
-
-// void outputPulses(uint16_t pulses[100][2], uint8_t pulseCount);
 
 void startTransmit(void);
 
@@ -207,6 +126,15 @@ int main (void)
 	int index, i;
 	for (;;) {
 		usart_recv();
+		// if (!(PORTB & _BV(PB5))) {
+		// 	printLine("Turning off");
+		// 	led_off();
+		// }
+		// else {
+		// 	printLine("TUrning on");
+		// 	led_on();
+
+		// }
 		printLine("Emmitting Code!");
 		startTransmit();
 	}
@@ -217,6 +145,8 @@ int main (void)
 
 void startTransmit(void)
 {
+	// Timer 1 is the 16 bit timer to time the 
+	// on off cycles of the led
 	// timer overflow mode
 	TCCR1A = 0x00;
 	// timer clk = system clk / 64
@@ -227,14 +157,26 @@ void startTransmit(void)
 	currentpulse = 0;
 	OCR1A = code[currentpulse];
 
-	// change this if it's backward
 	led_off();
 
-	// timer overflow interrupt enabled
+	// Output Compare interrupt enable 1 A
 	TIMSK1 |= _BV(OCIE1A);
 	// clear previous timer overflow
 	TIFR1 |= _BV(OCF1A);
 
+	// Timer 0 does the pwm modulation for when the LED is high
+	// Enable CTC mode
+	TCCR0A = 0x02;
+	TCCR0B |= _BV(CS01);
+	TCNT0 = 0x00;
+	OCR0A = 26;
+	TIMSK0 |= _BV(OCIE0A);
+	TIFR0 |= _BV(OCF0A);
+}
+
+ISR(TIMER0_COMPA_vect)
+{
+	led_toggle();
 }
 
 ISR(TIMER1_COMPA_vect)
@@ -243,10 +185,24 @@ ISR(TIMER1_COMPA_vect)
 	if (currentpulse < pulseCount) {
 		OCR1A = code[currentpulse];
 		TCNT1 = 0x000;
-		led_toggle();
+		// Enable the timer0 output compare A
+		// check to see if we should be outputting a high or low signal
+		if (currentpulse % 2) {
+			// Start the pwm
+			// led_on();
+			TCNT0 = 0x00;
+			TIMSK0 |= _BV(OCIE0A);
+		}
+		else {
+			// dont pwm 
+			TIMSK0 &= ~_BV(OCIE0A);
+			led_off();
+		}
 	}
 	else {
 		printLine("Done with code!");
+		TIMSK0 &= ~_BV(OCIE0A);
+		led_off();
 		TIMSK1 &= ~_BV(OCIE1A);
 	}
 }
