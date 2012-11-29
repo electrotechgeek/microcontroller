@@ -1,0 +1,322 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33B05CBA1666F0380020009B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B05CB91666F0380020009B /* Cocoa.framework */; };
+		33B05CC41666F0380020009B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33B05CC21666F0380020009B /* InfoPlist.strings */; };
+		33B05CC61666F0380020009B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B05CC51666F0380020009B /* main.m */; };
+		33B05CCA1666F0380020009B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 33B05CC81666F0380020009B /* Credits.rtf */; };
+		33B05CCD1666F0380020009B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B05CCC1666F0380020009B /* AppDelegate.m */; };
+		33B05CD01666F0380020009B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B05CCE1666F0380020009B /* MainMenu.xib */; };
+		33B05CD71666F0C80020009B /* HTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B05CD61666F0C80020009B /* HTTPServer.framework */; };
+		33B05CDF1666F1230020009B /* RemoteHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B05CDE1666F1230020009B /* RemoteHTTPServer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		33B05CB51666F0380020009B /* RemoteServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33B05CB91666F0380020009B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		33B05CBC1666F0380020009B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		33B05CBD1666F0380020009B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		33B05CBE1666F0380020009B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		33B05CC11666F0380020009B /* RemoteServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RemoteServer-Info.plist"; sourceTree = "<group>"; };
+		33B05CC31666F0380020009B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		33B05CC51666F0380020009B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		33B05CC71666F0380020009B /* RemoteServer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RemoteServer-Prefix.pch"; sourceTree = "<group>"; };
+		33B05CC91666F0380020009B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		33B05CCB1666F0380020009B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		33B05CCC1666F0380020009B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		33B05CCF1666F0380020009B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		33B05CD61666F0C80020009B /* HTTPServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HTTPServer.framework; path = /Applications/Server.app/Contents/ServerRoot/System/Library/PrivateFrameworks/HTTPServer.framework; sourceTree = "<absolute>"; };
+		33B05CDD1666F1230020009B /* RemoteHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteHTTPServer.h; sourceTree = "<group>"; };
+		33B05CDE1666F1230020009B /* RemoteHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteHTTPServer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33B05CB21666F0380020009B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B05CD71666F0C80020009B /* HTTPServer.framework in Frameworks */,
+				33B05CBA1666F0380020009B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33B05CAA1666F0380020009B = {
+			isa = PBXGroup;
+			children = (
+				33B05CBF1666F0380020009B /* RemoteServer */,
+				33B05CB81666F0380020009B /* Frameworks */,
+				33B05CB61666F0380020009B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		33B05CB61666F0380020009B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33B05CB51666F0380020009B /* RemoteServer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33B05CB81666F0380020009B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33B05CD61666F0C80020009B /* HTTPServer.framework */,
+				33B05CB91666F0380020009B /* Cocoa.framework */,
+				33B05CBB1666F0380020009B /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33B05CBB1666F0380020009B /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33B05CBC1666F0380020009B /* AppKit.framework */,
+				33B05CBD1666F0380020009B /* CoreData.framework */,
+				33B05CBE1666F0380020009B /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		33B05CBF1666F0380020009B /* RemoteServer */ = {
+			isa = PBXGroup;
+			children = (
+				33B05CCB1666F0380020009B /* AppDelegate.h */,
+				33B05CCC1666F0380020009B /* AppDelegate.m */,
+				33B05CDD1666F1230020009B /* RemoteHTTPServer.h */,
+				33B05CDE1666F1230020009B /* RemoteHTTPServer.m */,
+				33B05CCE1666F0380020009B /* MainMenu.xib */,
+				33B05CC01666F0380020009B /* Supporting Files */,
+			);
+			path = RemoteServer;
+			sourceTree = "<group>";
+		};
+		33B05CC01666F0380020009B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33B05CC11666F0380020009B /* RemoteServer-Info.plist */,
+				33B05CC21666F0380020009B /* InfoPlist.strings */,
+				33B05CC51666F0380020009B /* main.m */,
+				33B05CC71666F0380020009B /* RemoteServer-Prefix.pch */,
+				33B05CC81666F0380020009B /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33B05CB41666F0380020009B /* RemoteServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33B05CD31666F0380020009B /* Build configuration list for PBXNativeTarget "RemoteServer" */;
+			buildPhases = (
+				33B05CB11666F0380020009B /* Sources */,
+				33B05CB21666F0380020009B /* Frameworks */,
+				33B05CB31666F0380020009B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RemoteServer;
+			productName = RemoteServer;
+			productReference = 33B05CB51666F0380020009B /* RemoteServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33B05CAC1666F0380020009B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Apple Inc.";
+			};
+			buildConfigurationList = 33B05CAF1666F0380020009B /* Build configuration list for PBXProject "RemoteServer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 33B05CAA1666F0380020009B;
+			productRefGroup = 33B05CB61666F0380020009B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33B05CB41666F0380020009B /* RemoteServer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33B05CB31666F0380020009B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B05CC41666F0380020009B /* InfoPlist.strings in Resources */,
+				33B05CCA1666F0380020009B /* Credits.rtf in Resources */,
+				33B05CD01666F0380020009B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33B05CB11666F0380020009B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B05CC61666F0380020009B /* main.m in Sources */,
+				33B05CCD1666F0380020009B /* AppDelegate.m in Sources */,
+				33B05CDF1666F1230020009B /* RemoteHTTPServer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		33B05CC21666F0380020009B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33B05CC31666F0380020009B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		33B05CC81666F0380020009B /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33B05CC91666F0380020009B /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		33B05CCE1666F0380020009B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33B05CCF1666F0380020009B /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		33B05CD11666F0380020009B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		33B05CD21666F0380020009B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		33B05CD41666F0380020009B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Server.app/Contents/ServerRoot/System/Library/PrivateFrameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RemoteServer/RemoteServer-Prefix.pch";
+				INFOPLIST_FILE = "RemoteServer/RemoteServer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		33B05CD51666F0380020009B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Server.app/Contents/ServerRoot/System/Library/PrivateFrameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RemoteServer/RemoteServer-Prefix.pch";
+				INFOPLIST_FILE = "RemoteServer/RemoteServer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33B05CAF1666F0380020009B /* Build configuration list for PBXProject "RemoteServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33B05CD11666F0380020009B /* Debug */,
+				33B05CD21666F0380020009B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33B05CD31666F0380020009B /* Build configuration list for PBXNativeTarget "RemoteServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33B05CD41666F0380020009B /* Debug */,
+				33B05CD51666F0380020009B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33B05CAC1666F0380020009B /* Project object */;
+}

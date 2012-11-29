@@ -20,6 +20,9 @@ void outputPulses(uint16_t pulses[100][2], uint8_t pulseCount);
 void initPCINT_PD2(void);
 void initCounter(void);
 
+// every 26 us
+// 
+
 uint16_t pulses[100][2];
 uint8_t currentpulse = 0;
 
@@ -121,7 +124,7 @@ void outputPulses(uint16_t pulses[100][2], uint8_t pulseCount)
 	    printString(number_string);
 		usart_send(',');
 		// print the low value
-		sprintf(number_string, "%6u", pulses[i][1]);
+		sprintf(number_string, "%6u,", pulses[i][1]);
 	    printLine(number_string);
 	}
 	printLine("}");
