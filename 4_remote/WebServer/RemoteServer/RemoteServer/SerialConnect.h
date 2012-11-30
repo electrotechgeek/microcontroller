@@ -40,7 +40,7 @@
 
 - (BOOL)activate;
 - (void)sendSerialMessage:(NSString *)message;
-
+- (void)writeByte:(unsigned char)byte;
 //NSNotification: @"serialMessageReceived" ==> (NSString*)notificationObject
 
 @end

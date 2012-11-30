@@ -201,5 +201,10 @@ int serialport_init(const char* serialport, int baud)
 	
 }
 
+- (void)writeByte:(unsigned char)byte
+{
+    [_fileHandle writeData:[NSData dataWithBytes:&byte length:1]];
+}
+
 
 @end

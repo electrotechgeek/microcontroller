@@ -6,11 +6,16 @@
 #include <avr/interrupt.h>
 #include "usart.h"
 
+void initRecorder();
 void recordCode();
+
+void initEmitter();
 void emitCode();
 
 int main (void)
 {
+	initRecorder();
+	initEmitter();
 	usart_init(9600, 16000000);
 	sei();
 
@@ -24,7 +29,6 @@ int main (void)
 				break;
 			case 'p':
 			case 'P':
-				printLine("Emitting code");
 				emitCode();
 				break;
 			default:

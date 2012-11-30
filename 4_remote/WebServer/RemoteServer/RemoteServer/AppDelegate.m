@@ -68,7 +68,6 @@
 {
     NSString *receivedString = [notification object];
     [self.receivedData appendString:receivedString];
-    
     if ([self.receivedData rangeOfString:@"err"].location != NSNotFound) {
         
     }
@@ -83,9 +82,12 @@
             [self storeCode:code withName:name];
         }
     }
-    
 }
 
+- (IBAction)printData:(id)sender
+{
+    NSLog(@"%@", self.receivedData);
+}
 
 - (IBAction)playCode:(id)sender
 {
@@ -95,10 +97,15 @@
     }
     else {
         // get name from name box
+        code = [self.codes objectForKey:self.nameField.stringValue];
     }
-    // Send p
-    // Length of code
-    // Then the code
+    if (code.length > 0) {
+        self.receivedData = [NSMutableString string];
+        NSUInteger componentCount = [[code componentsSeparatedByString:@","] count] - 1;
+        [self.serialConnection sendSerialMessage:@"p"];
+        [self.serialConnection writeByte:(unsigned char)componentCount];
+        [self.serialConnection sendSerialMessage:code];
+    }
 }
 
 @end

@@ -13,6 +13,11 @@ uint8_t timeoutCounter = 0;
 uint16_t pulses[255][2];
 uint8_t pulseIndex = 0;
 
+void initRecorder()
+{
+	DDRD &= ~_BV(PD2);
+}
+
 void outputPulses(uint16_t pulses[255][2], uint8_t pulseCount)
 {
 	uint8_t i;
@@ -65,9 +70,8 @@ ISR(PCINT2_vect)
 	TCNT1 = 0x000;
 }
 
-void initRecorder(void)
+void setupRecorder(void)
 {
-	DDRD &= ~_BV(PD2);
 	status = 0;
 	timeoutCounter = 0;
 
@@ -92,7 +96,7 @@ void initRecorder(void)
 
 void recordCode()
 {
-	initRecorder();
+	setupRecorder();
 		
 	// wait for the code to come in
 	for (;status == 0;) {

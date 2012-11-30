@@ -12,6 +12,8 @@
 
 @end
 
+#define HOST_URL @"http://129.65.55.3:8888"
+
 @implementation ViewController
 
 - (void)viewDidLoad
@@ -55,7 +57,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = [indexPath row];
-    NSString *urlString = [NSString stringWithFormat:@"http://localhost:8888/doCode/%@", [self.codeNames objectAtIndex:row]];
+    NSString *urlString = [NSString stringWithFormat: @"%@/doCode/%@", HOST_URL, [self.codeNames objectAtIndex:row]];
     NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] usedEncoding:NULL error:NULL];
     NSLog(@"response: %@", response);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -63,7 +65,7 @@
 
 - (IBAction)refresh:(id)sender
 {
-    NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://localhost:8888/getCodes"] usedEncoding:NULL error:NULL];
+    NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:[HOST_URL stringByAppendingString:@"/getCodes"]] usedEncoding:NULL error:NULL];
     self.codeNames = [response componentsSeparatedByString:@","];
     [self.tableView reloadData];
 }

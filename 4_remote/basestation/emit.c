@@ -17,6 +17,12 @@ uint8_t code_length;
 #define led_off() PORTB |= _BV(PB5)
 #define led_toggle() PORTB ^= _BV(PB5)
 
+void initEmitter()
+{
+	DDRB |= _BV(PB5);
+	led_off();
+}
+
 ISR(TIMER0_COMPA_vect)
 {
 	led_toggle();
@@ -46,7 +52,7 @@ ISR(TIMER1_COMPB_vect)
 		send_status = code_length;
 		TIMSK0 &= ~_BV(OCIE0A);
 		led_off();
-		TIMSK1 &= ~_BV(OCIE1A);
+		TIMSK1 &= ~_BV(OCIE1B);
 	}
 }
 
@@ -67,7 +73,7 @@ void startTransmit(void)
 	led_off();
 
 	// Output Compare interrupt enable 1 A
-	TIMSK1 |= _BV(OCIE1A);
+	TIMSK1 |= _BV(OCIE1B);
 	// clear previous timer overflow
 	TIFR1 |= _BV(OCF1A);
 
@@ -83,30 +89,29 @@ void startTransmit(void)
 
 void emitCode()
 {
-	char buffer[12];
+	char buffer[11];
 
 	uint8_t c, codeIndex = 0, bufferIndex = 0;
 	
 	code_length = usart_recv();
 	code = malloc(code_length * sizeof(unsigned int));
 
-	for (;;) {
-		for (; codeIndex < code_length;) {
-			c = usart_recv();
-			if(c == ',' && bufferIndex > 0) {
-				buffer[bufferIndex] = '\0';
-
-				sscanf(buffer, "%u", &code[codeIndex]);
-				codeIndex++;
-				bufferIndex = 0;
-			}
-			else if (bufferIndex > 11) {
-				bufferIndex = 0;
-			}
-			else {
-				buffer[bufferIndex] = c;
-				bufferIndex++;
-			}
+	for (; codeIndex < code_length;) {
+		c = usart_recv();
+		if(c == ',' && bufferIndex > 0) {
+			buffer[bufferIndex] = '\0';
+			// sscanf(buffer, "%u", &code[codeIndex]);
+			code[codeIndex] = (unsigned int) strtoul(buffer, NULL, 10);
+			// printLine(buffer);
+			codeIndex++;
+			bufferIndex = 0;
+		}
+		else if (bufferIndex > 10) {
+			bufferIndex = 0;
+		}
+		else {
+			buffer[bufferIndex] = c;
+			bufferIndex++;
 		}
 	}
 
@@ -117,6 +122,7 @@ void emitCode()
 			_delay_us(200);
 		}
 	}
+
 
 	free(code);
 	code = NULL;
