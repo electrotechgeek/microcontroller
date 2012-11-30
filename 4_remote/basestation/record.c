@@ -3,6 +3,7 @@
 #include <avr/io.h>					// Input-output ports, special registers
 #include <avr/interrupt.h>
 #include <stdio.h>
+#include <util/delay.h>
 #include "usart.h"
 
 
@@ -18,10 +19,10 @@ void outputPulses(uint16_t pulses[255][2], uint8_t pulseCount)
 	char number_string[10];
 	for (i = 0; i < pulseCount; i++) {
 		// print the high value
-		sprintf(number_string, "%6u,", pulses[i][0]);
+		sprintf(number_string, "%u,", pulses[i][0]);
 	    printString(number_string);
 		// print the low value
-		sprintf(number_string, "%6u,", pulses[i][1]);
+		sprintf(number_string, "%u,", pulses[i][1]);
 	    printString(number_string);
 	}
 	printLine("|");
@@ -35,6 +36,7 @@ ISR(TIMER1_COMPA_vect)
 	}
 	else {
 		timeoutCounter++;
+		// printLine("timeout");
 		// If we've been waiting for over 10 seconds
 		// 10 seconds/ .25 seconds = 40
 		if (timeoutCounter > 40) {
@@ -91,17 +93,18 @@ void initRecorder(void)
 void recordCode()
 {
 	initRecorder();
-
+		
 	// wait for the code to come in
-	for (;status == 0;);
-
+	for (;status == 0;) {
+		_delay_us(200);
+	}
 
 	if (status < 0) {
 		// We've timed out or something went wrong
 		printLine("err");
 	}
 	else {
-		outputPulses(pulses, pulseIndex);
+		outputPulses(pulses, status);
 	}
 
 	// turn of pin change interrupt

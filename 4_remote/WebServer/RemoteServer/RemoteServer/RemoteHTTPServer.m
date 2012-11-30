@@ -17,12 +17,13 @@
         
         [self get:@"/getCodes"
         withBlock:^(RouteRequest *request, RouteResponse *response) {
-            [response respondWithString:@"TV Power,XBOX,DVD Player,FOO,BAR"];
+            NSString *responseString = [self.appDelgate.codes.allKeys componentsJoinedByString:@","];
+            [response respondWithString:responseString];
         }];
         
         [self get:@"/doCode/:codeName"
          withBlock:^(RouteRequest *request, RouteResponse *response) {
-             NSLog(@"doing code %@", [request param:@"codeName"]);
+             [self.appDelgate playCode:[request param:@"codeName"]];
              [response respondWithString:@"ok"];
          }];
         

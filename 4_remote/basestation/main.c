@@ -24,6 +24,7 @@ int main (void)
 				break;
 			case 'p':
 			case 'P':
+				printLine("Emitting code");
 				emitCode();
 				break;
 			default:

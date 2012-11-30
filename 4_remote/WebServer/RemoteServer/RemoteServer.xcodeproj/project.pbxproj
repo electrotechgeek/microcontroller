@@ -15,6 +15,7 @@
 		33B05CD01666F0380020009B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B05CCE1666F0380020009B /* MainMenu.xib */; };
 		33B05CD71666F0C80020009B /* HTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B05CD61666F0C80020009B /* HTTPServer.framework */; };
 		33B05CDF1666F1230020009B /* RemoteHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B05CDE1666F1230020009B /* RemoteHTTPServer.m */; };
+		33EC2049166829D400E31542 /* SerialConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EC2048166829D400E31542 /* SerialConnect.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		33B05CD61666F0C80020009B /* HTTPServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HTTPServer.framework; path = /Applications/Server.app/Contents/ServerRoot/System/Library/PrivateFrameworks/HTTPServer.framework; sourceTree = "<absolute>"; };
 		33B05CDD1666F1230020009B /* RemoteHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteHTTPServer.h; sourceTree = "<group>"; };
 		33B05CDE1666F1230020009B /* RemoteHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteHTTPServer.m; sourceTree = "<group>"; };
+		33EC2047166829D400E31542 /* SerialConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialConnect.h; sourceTree = "<group>"; };
+		33EC2048166829D400E31542 /* SerialConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialConnect.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				33B05CCC1666F0380020009B /* AppDelegate.m */,
 				33B05CDD1666F1230020009B /* RemoteHTTPServer.h */,
 				33B05CDE1666F1230020009B /* RemoteHTTPServer.m */,
+				33EC2047166829D400E31542 /* SerialConnect.h */,
+				33EC2048166829D400E31542 /* SerialConnect.m */,
 				33B05CCE1666F0380020009B /* MainMenu.xib */,
 				33B05CC01666F0380020009B /* Supporting Files */,
 			);
@@ -178,6 +183,7 @@
 				33B05CC61666F0380020009B /* main.m in Sources */,
 				33B05CCD1666F0380020009B /* AppDelegate.m in Sources */,
 				33B05CDF1666F1230020009B /* RemoteHTTPServer.m in Sources */,
+				33EC2049166829D400E31542 /* SerialConnect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +321,7 @@
 				33B05CD51666F0380020009B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

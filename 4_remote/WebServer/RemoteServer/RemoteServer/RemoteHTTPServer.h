@@ -7,7 +7,10 @@
 //
 
 #import <HTTPServer/RoutingHTTPServer.h>
+#import "AppDelegate.h"
 
 @interface RemoteHTTPServer : RoutingHTTPServer
+
+@property (assign) AppDelegate *appDelgate;
 
 @end

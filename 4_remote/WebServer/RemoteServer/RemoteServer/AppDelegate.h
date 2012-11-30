@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SerialConnect.h"
 
 @class RemoteHTTPServer;
 
@@ -14,4 +15,15 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (retain) RemoteHTTPServer *httpServer;
+@property (retain) SerialConnect *serialConnection;
+@property (assign) IBOutlet NSTextField *nameField;
+@property (retain) NSMutableString *receivedData;
+
+
+- (NSDictionary *)codes;
+- (void)storeCode:(NSString *)code withName:(NSString *)name;
+
+- (IBAction)recordCode:(id)sender;
+- (IBAction)playCode:(id)sender;
+
 @end

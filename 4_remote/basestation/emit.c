@@ -3,6 +3,8 @@
 #include <stdlib.h>					// Standard C library
 #include <avr/io.h>					// Input-output ports, special registers
 #include <avr/interrupt.h>
+#include <util/delay.h>
+#include <stdio.h>
 #include "usart.h"
 
 uint8_t send_status = 0;
@@ -84,7 +86,6 @@ void emitCode()
 	char buffer[12];
 
 	uint8_t c, codeIndex = 0, bufferIndex = 0;
-	// read data from the usart
 	
 	code_length = usart_recv();
 	code = malloc(code_length * sizeof(unsigned int));
@@ -94,7 +95,7 @@ void emitCode()
 			c = usart_recv();
 			if(c == ',' && bufferIndex > 0) {
 				buffer[bufferIndex] = '\0';
-				
+
 				sscanf(buffer, "%u", &code[codeIndex]);
 				codeIndex++;
 				bufferIndex = 0;
@@ -112,9 +113,10 @@ void emitCode()
 	if (code_length > 0) {
 		send_status = 0;
 		startTransmit();
-		for (;send_status == 0;);
+		for (;send_status == 0;) {
+			_delay_us(200);
+		}
 	}
-
 
 	free(code);
 	code = NULL;
