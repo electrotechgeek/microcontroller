@@ -12,7 +12,7 @@
 
 @end
 
-#define HOST_URL @"http://129.65.55.3:8888"
+#define HOST_URL @"http://129.65.55.192:8888"
 
 @implementation ViewController
 
@@ -58,6 +58,7 @@
 {
     NSUInteger row = [indexPath row];
     NSString *urlString = [NSString stringWithFormat: @"%@/doCode/%@", HOST_URL, [self.codeNames objectAtIndex:row]];
+    NSLog(@"%@", urlString);
     NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] usedEncoding:NULL error:NULL];
     NSLog(@"response: %@", response);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

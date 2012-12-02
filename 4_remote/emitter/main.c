@@ -5,20 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define freq_to_timerval(x) ((F_CPU / x - 1 )/ 2)
-
-typedef struct codeElement
-{
-  unsigned int onTime;   // duration of "On" time
-  unsigned int offTime;  // duration of "Off" time
-} codestruct;
-
-struct powercode
-{
-  uint8_t timer_val; // not the actual frequency, but the timer value to generate the frequency
-  struct codeElement codes[];  // flexible number of on/off codes
-};
-
 #define pulseCount  150
 unsigned int code[] = 
 {
@@ -91,84 +77,7 @@ unsigned int code[] =
 	   130,   151,
 	   134,   149,
 };
-/*{
-	 46805,   261,
-	    84,    99,
-	   222,    98,
-	    84,   106,
-	    78,   106,
-	   146,    98,
-	    84,    99,
-	   289,    98,
-	    85,    99,
-	    84,    99,
-	   219,    99,
-	   152,    99,
-	   152,    98,
-	   152,    99,
-	   152,    99,
-	   152,   104,
-	    78,   106,
-	    78,    99,
-	    84,    98,
-	    84,   105,
-	    78,    98,
-	   153,    99,
-	   220,    99,
-	   219,    99,
-	    84,    99,
-	 22819,   268,
-	    78,   105,
-	   216,    98,
-	    85,    99,
-	    84,    99,
-	   151,    99,
-	    84,   105,
-	   282,    98,
-	    84,   105,
-	    78,   106,
-	   213,    99,
-	   152,   106,
-	   146,    98,
-	   152,   106,
-	   146,    99,
-	   151,    99,
-	    84,    99,
-	    85,    99,
-	    83,    99,
-	    84,    99,
-	    84,    99,
-	   151,   100,
-	   220,   106,
-	   213,    99,
-	    84,    99,
-	  1758,   268,
-	    78,   106,
-	   216,    98,
-	    85,    98,
-	    84,    99,
-	   152,    98,
-	    85,    99,
-	   289,    99,
-	    83,    99,
-	    84,   105,
-	   213,    98,
-	   152,    99,
-	   152,    99,
-	   151,    99,
-	   152,    99,
-	   152,    98,
-	    84,    99,
-	    84,    99,
-	    84,    98,
-	   152,    99,
-	    84,    98,
-	   153,    99,
-	   221,    99,
-	   288,    99,
-	    85,   105
-};
-*/
+
 
 // USART Stuff
 void usart_init(uint16_t baudin, uint32_t clk_speedin);
