@@ -1,3 +1,4 @@
+// USART Utility functions
 // Project 4
 // Jason Dreisbach
 // Jason Descenzo
