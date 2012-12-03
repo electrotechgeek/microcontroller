@@ -12,7 +12,7 @@
 
 @end
 
-#define HOST_URL @"http://129.65.55.192:8888"
+#define HOST_URL @"http://localhost:8888"
 
 @implementation ViewController
 

@@ -1,11 +1,14 @@
 // Message recorder
+// Project 4
+// Jason Dreisbach
+// Jason Descenzo
+
 #include <stdlib.h>					// Standard C library
 #include <avr/io.h>					// Input-output ports, special registers
 #include <avr/interrupt.h>
 #include <stdio.h>
 #include <util/delay.h>
 #include "usart.h"
-
 
 int status = 0;
 uint8_t timeoutCounter = 0;

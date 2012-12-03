@@ -1,7 +1,7 @@
 // Base station
+// Project 4
 // Jason Dreisbach
 // Jason Descenzo
-// Project 4
 
 #include <avr/interrupt.h>
 #include "usart.h"

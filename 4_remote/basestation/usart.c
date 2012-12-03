@@ -1,3 +1,7 @@
+// Project 4
+// Jason Dreisbach
+// Jason Descenzo
+
 #include <stdlib.h>
 #include <string.h>
 #include "usart.h"

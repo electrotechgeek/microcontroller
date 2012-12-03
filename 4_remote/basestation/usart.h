@@ -1,4 +1,8 @@
-// Usart fuctions
+// Public USART fuctions
+// Project 4
+// Jason Dreisbach
+// Jason Descenzo
+
 #include <avr/io.h>
 
 void usart_init(uint16_t baudin, uint32_t clk_speedin);

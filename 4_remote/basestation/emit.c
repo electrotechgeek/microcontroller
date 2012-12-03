@@ -1,4 +1,7 @@
 // Emitter
+// Project 4
+// Jason Dreisbach
+// Jason Descenzo
 
 #include <stdlib.h>					// Standard C library
 #include <avr/io.h>					// Input-output ports, special registers
@@ -100,9 +103,7 @@ void emitCode()
 		c = usart_recv();
 		if(c == ',' && bufferIndex > 0) {
 			buffer[bufferIndex] = '\0';
-			// sscanf(buffer, "%u", &code[codeIndex]);
 			code[codeIndex] = (unsigned int) strtoul(buffer, NULL, 10);
-			// printLine(buffer);
 			codeIndex++;
 			bufferIndex = 0;
 		}
